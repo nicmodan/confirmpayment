@@ -19,6 +19,10 @@ const deposit = new URLSearchParams(window.location.search).get(
     "deposit"
 );
 
+const itemsCount = new URLSearchParams(window.location.search).get(
+    "iteme"
+);
+
 const plane = new URLSearchParams(window.location.search).get(
     "plane"
 );
@@ -53,7 +57,7 @@ async function initialize() {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ items }),
   });
-  const { clientSecret } = await response.json();
+  const { clientSecret, paymentIntentId } = await response.json();
 
   const appearance = {
     theme: 'flat',
@@ -74,7 +78,7 @@ async function handleSubmit(e){
     e.preventDefault();
     setLoading(true);
 
-    const conditionUrl = "https://modanmic-fintech.onrender.com" // plane ?`https://tradebot-k4nt.onrender.com/success-subscribe.html?username=${username}&deposit=${deposit}&plane=${plane}`   : `https://tradebot-k4nt.onrender.com/success.html?username=${username}&deposit=${deposit}` // plane ?`http://localhost:3001/success-subscribe.html?username=${username}&deposit=${deposit}&plane=${plane}`   : `https://tradebot-k4nt.onrender.com/success.html?username=${username}&deposit=${deposit}`
+    const conditionUrl = `https://borderless-buy.vercel.app/payment-successful?orderId=${paymentIntentId}&amount=${deposit}&items=${itemsCount}&email=${username}`// "https://modanmic-fintech.onrender.com" // plane ?`https://tradebot-k4nt.onrender.com/success-subscribe.html?username=${username}&deposit=${deposit}&plane=${plane}`   : `https://tradebot-k4nt.onrender.com/success.html?username=${username}&deposit=${deposit}` // plane ?`http://localhost:3001/success-subscribe.html?username=${username}&deposit=${deposit}&plane=${plane}`   : `https://tradebot-k4nt.onrender.com/success.html?username=${username}&deposit=${deposit}`
 
     const { error } = await stripe.confirmPayment({
       elements,

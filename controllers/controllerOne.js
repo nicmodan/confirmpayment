@@ -60,6 +60,7 @@ paymentRouter.post("/create-payment-intent", async (req, res) => {
     // /api/payment/create-payment-intent
         res.send({
             clientSecret: paymentIntent.client_secret,
+            paymentIntentId: paymentIntent.id,
             ...newhistory
         });
     }catch(e){
