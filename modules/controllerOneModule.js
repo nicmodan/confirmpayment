@@ -1,12 +1,8 @@
 const mongoose = require("mongoose")
 const adminSchema = new mongoose.Schema({
 	"email": String,
-	"paymentIntentId": String,
-	"transactionProcess": String,
-    "transactionType": String,
-	"paymentID": String,
 	"date": String,
-	"amount": String
+	"password": String
 })
 
 
@@ -17,6 +13,6 @@ adminSchema.set("toJSON", {
       	delete returnedObject.__v
 	}
 })
-const StudentAdmin = mongoose.model("paymentAdmin", adminSchema)
+const StudentAdmin = mongoose.model("ecommersBackend", adminSchema)
 
 module.exports = StudentAdmin
